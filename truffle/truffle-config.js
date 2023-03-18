@@ -1,15 +1,15 @@
 
 //PARA DEPLOYAR EM REDES REMOTAS. DESCOMENTAR OS VALORES ABAIXO
 
-//const HDWalletProvider = require('@truffle/hdwallet-provider'); //Lembre-se de instalar essa biblioteca para deploiar os contratos nas redes remotas (Mainnet, Rinkeby, Ropsten, Goerli, etc)
+const HDWalletProvider = require('@truffle/hdwallet-provider'); //Lembre-se de instalar essa biblioteca para deploiar os contratos nas redes remotas (Mainnet, Rinkeby, Ropsten, Goerli, etc)
 
-//const DOTENV = require("dotenv");
-//DOTENV.config();
+const DOTENV = require("dotenv");
+DOTENV.config();
 
-//const MNEMONIC = process.env._mnemonic;
+const MNEMONIC = process.env._mnemonic;
 //const GOERLI_KEY = process.env._goerliKey;
 //const BINANCE_KEY = process.env._binanceKey;
-//const FANTOM_KEY = process.env._fantomKey
+const FANTOM_KEY = process.env._fantomKey
 module.exports = {
   contracts_build_directory: "../client/src/build/contracts",
   networks: {

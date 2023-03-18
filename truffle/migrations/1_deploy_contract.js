@@ -1,5 +1,5 @@
-const SimpleStorage = artifacts.require("SimpleStorage")
+const FundMe = artifacts.require("FundMe")
 
 module.exports = async (deployer,network,accounts)=>{
-  await deployer.deploy(SimpleStorage)
+  await deployer.deploy(FundMe)
 }
