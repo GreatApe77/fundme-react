@@ -4,15 +4,16 @@ import { connectWallet } from "../Web3Functions";
 
 function ConnectWallet(){
 
-    const [first, setfirst] = useState("ConnectWallet")
+    const [first, setfirst] = useState("Connect Wallet")
     async function connectWalletOnClick(){
         const connectedAccount = await connectWallet()
+        
         setfirst(connectedAccount)
     }
 
 
     return(
-        <button onClick={connectWalletOnClick}>
+        <button className="ConnectWallet" onClick={connectWalletOnClick}>
             {first}
         </button>
     )
