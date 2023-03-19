@@ -34,3 +34,11 @@ export async function fund(amount){
 	const tx = await fundMeContract.methods.fund().send({from:msgSender,value:web3.utils.toWei(amount)})
 	return tx
 }
+
+export async function getAllFunds(){
+	const web3 = await getWeb3()
+	const msgSender = await connectWallet()
+	const fundMeContract = new web3.eth.Contract(FUND_ME_ABi,FUND_ME_ADDRESS)	
+	const readCall = await fundMeContract.methods.getAllFunds().call({from:msgSender})
+	return readCall	
+}

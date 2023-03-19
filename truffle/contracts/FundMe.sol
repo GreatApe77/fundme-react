@@ -6,11 +6,13 @@ contract FundMe {
         address addressOfFunder;
         uint256 amountFunded;
     }
-
+    
     modifier onlyOwner() {
         require(msg.sender == owner);
         _;
     }
+    
+    Funder[] allFunds;
     event Fund(address indexed funder,uint256 indexed amountFunded);
 
     address private owner;
@@ -34,12 +36,25 @@ contract FundMe {
     ) public view returns (Funder memory) {
         return funderByAddress[funderAddress];
     }
+    function getAllFunds() public view returns (Funder[] memory){
+        return allFunds;
 
+    }  
     function fund() public payable {
+        Funder memory newTransaction;
+
+        newTransaction.addressOfFunder = msg.sender;
+
+        newTransaction.amountFunded = msg.value;
+
+        allFunds.push(newTransaction);
+        
         funderByAddress[msg.sender].addressOfFunder = msg.sender;
 
         funderByAddress[msg.sender].amountFunded += msg.value;
-    
+
+
+
         emit Fund(msg.sender, msg.value);
     }
     //dono pode scar os ganhos do contrato
