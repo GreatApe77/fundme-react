@@ -5,7 +5,7 @@ function FundMeField(){
 
     async function fundOnClick(){
         const tx = await fund(document.getElementById("amountToFund").value)
-        alert(typeof(tx))
+        console.log(tx)
     }
 
     return (
@@ -17,3 +17,5 @@ function FundMeField(){
 }
 
 export default FundMeField
+
+

@@ -4,21 +4,26 @@ import GenericButton from "./GenericButton";
 import Transaction from "./Transaction";
 import Web3 from "web3";
 function TransactionRecordList() {
-	const [funder, setFunder] = useState("0x0000000000000000000000000000000000000000");
-	const [amount, setAmount] = useState("0.0");
+	const [transations,setTransactions] = useState([])
 	async function viewTransactionsOnCLick() {
 		const allfunds = await getAllFunds();
-        setAmount(Web3.utils.fromWei(allfunds[0].amountFunded))
-        setFunder(allfunds[0].addressOfFunder)
+		setTransactions(allfunds)
 	}
 
 	return (
-		<div className="TransactionRecordList">
+		<div className="container">
 			<GenericButton execute={viewTransactionsOnCLick} content="View all funds" />
-			<Transaction
-				amount={amount}
-				funder={funder}
-			/>
+			<div className="TransactionRecordList">
+			{
+				transations.map((transactions,index)=>(
+					<Transaction key={index}
+					funder={transactions.addressOfFunder}
+					amount={Web3.utils.fromWei(transactions.amountFunded)}
+					/>
+				))
+			}
+			</div>
+
 		</div>
 	);
 }
