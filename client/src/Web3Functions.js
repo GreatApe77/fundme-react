@@ -1,7 +1,7 @@
 import Web3 from "web3";
 import FUND_ME_DATA from "./build/contracts/FundMe.json"
 const FUND_ME_ABi = FUND_ME_DATA.abi
-const FUND_ME_ADDRESS = FUND_ME_DATA.networks["1692844825476"].address
+const FUND_ME_ADDRESS = FUND_ME_DATA.networks["1692845776848"].address
 const noMetamaskMsg =
 	"<h1>No Metamask Found! Please Install the metamask extension on your browser</h1>";
 
