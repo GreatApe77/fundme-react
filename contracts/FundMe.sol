@@ -25,29 +25,43 @@ contract FundMe {
     }
     event Fund(address indexed funderAddress, uint256 indexed amount);
     event Withdraw(uint256 indexed amount);
+
     constructor() {
         owner = msg.sender;
     }
 
     function fund() public payable validPrice {
         //already exists
-        if(funderByAddress[msg.sender].funderAddress==msg.sender){
+        if (funderByAddress[msg.sender].funderAddress == msg.sender) {
             funderByAddress[msg.sender].amountFunded += msg.value;
-        }else{
-            Funder memory newFunder = Funder({funderAddress:msg.sender,amountFunded:msg.value});
+        } else {
+            Funder memory newFunder = Funder({
+                funderAddress: msg.sender,
+                amountFunded: msg.value
+            });
             funderByAddress[msg.sender] = newFunder;
             allFundersAddresses.push(msg.sender);
         }
         emit Fund(msg.sender, msg.value);
     }
-    function setMinimunDonation(uint256 newDonationPrice)external onlyOwner(){
+
+    function setMinimunDonation(uint256 newDonationPrice) external onlyOwner {
         minimunPrice = newDonationPrice;
     }
-    function withdraw(uint256 amount) external onlyOwner {
 
-        (bool ok,) = payable(owner).call{value:amount}("");
-        require(ok,"Error in Witdraw");
+    function withdraw(uint256 amount) external onlyOwner {
+        (bool ok, ) = payable(owner).call{value: amount}("");
+        require(ok, "Error in Witdraw");
         emit Withdraw(amount);
+    }
+
+    function getAllFunders() external view returns (Funder[] memory) {
+        Funder[] memory allFunders = new Funder[](allFundersAddresses.length);
+
+        for (uint i = 0; i < allFundersAddresses.length; i++) {
+            allFunders[i] = funderByAddress[allFundersAddresses[i]];
+        }
+        return allFunders;
     }
 
     function getContractBalance() public view returns (uint256) {
