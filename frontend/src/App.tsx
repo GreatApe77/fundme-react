@@ -1,5 +1,6 @@
 import Header from "./components/Header"
-import { ConnectWallet } from "@thirdweb-dev/react";
+
+import Hero from "./components/Hero";
 
 
 
@@ -9,9 +10,12 @@ function App() {
   
   
   return (
-    <div>
+    <div >
     <Header/>
-     
+    <div >
+    <Hero/>
+
+    </div>
       
      
      

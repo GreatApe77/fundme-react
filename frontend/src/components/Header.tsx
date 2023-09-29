@@ -18,12 +18,13 @@ export default function Header() {
 								aria-label="Bootstrap"
 								src="https://www.svgrepo.com/show/138401/wallet.svg"
 							/>
-								
+
+							<h3>Fund Me!</h3>	
 							
 						</a>
 
 						<ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-							<li>
+							{/*<li>
 								<a href="#" className="nav-link text-secondary">
 									<img className="bi d-block mx-auto mb-1" width="24" height="24"/>
 										<use  />
@@ -54,9 +55,9 @@ export default function Header() {
 									
 									Home
 								</a>
-							</li>
+							</li>*/}
 							<li>
-								<ConnectWallet/>
+								<ConnectWallet theme={"dark"} btnTitle="Conectar Carteira" switchToActiveChain={true}/>
 							</li>
 						</ul>
 					</div>
