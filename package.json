@@ -4,14 +4,15 @@
   "description": "fund me dapp",
   "author": "Mateus",
   "license": "ISC",
-  "scripts":{
-    "compile":"npx hardhat compile",
-    "deployLocal":"npx hardhat run scripts/deploy.ts",
-    "test":"npx hardhat test",
-    "coverage":"npx hardhat coverage"
+  "scripts": {
+    "compile": "npx hardhat compile",
+    "deployLocal": "npx hardhat run scripts/deploy.ts",
+    "test": "npx hardhat test",
+    "coverage": "npx hardhat coverage"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "dotenv": "^16.3.1",
     "hardhat": "^2.17.4"
   }
 }
