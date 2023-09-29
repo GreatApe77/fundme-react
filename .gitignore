@@ -41,3 +41,5 @@ typechain-types
 cache
 artifacts
 
+#dist
+dist
