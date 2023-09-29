@@ -21,7 +21,7 @@ contract FundMe {
         _;
     }
     modifier validPrice() {
-        require(msg.value >= minimunPrice);
+        require(msg.value >= minimunPrice,"Donate more");
         _;
     }
     event Fund(address indexed funderAddress, uint256 indexed amount);
