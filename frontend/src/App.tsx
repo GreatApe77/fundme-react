@@ -1,4 +1,4 @@
-
+import Header from "./components/Header"
 import { ConnectWallet } from "@thirdweb-dev/react";
 
 
@@ -9,16 +9,17 @@ function App() {
   
   
   return (
-    <>
-     <div>
-      <ConnectWallet switchToActiveChain={true}/>
-     </div>
-     <div>
-     <div>
+    <div>
+    <Header/>
+     
+      
+     
+     
+     
+     
+    
      
     </div>
-     </div>
-    </>
   )
 }
 
