@@ -8,5 +8,6 @@ export function getWeb3(){
 }
 export  function getContract(account:string){
     const web3 = getWeb3()
+    console.log(FUND_ME_ADDRESS)
     return new web3.eth.Contract(ABI,FUND_ME_ADDRESS,{from:account})
 }

@@ -1,5 +1,5 @@
 
-export const FUND_ME_ADDRESS = `${process.env.VITE_FUND_ME_ADDRESS}`
+export const FUND_ME_ADDRESS = `${import.meta.env.VITE_FUND_ME_ADDRESS}`
 
 export const ABI = [
     {

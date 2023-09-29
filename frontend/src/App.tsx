@@ -11,7 +11,7 @@ function App() {
 			<Header />
 			<div>
 				{account?(
-					<FundMeForm totalDonatedEth="4.5"/>
+					<FundMeForm />
 				):(
 					<Hero />
 
