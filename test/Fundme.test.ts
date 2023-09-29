@@ -90,4 +90,13 @@ describe("Fundme", function () {
 			previousPrice.toLocaleString() === ethers.parseUnits("0.01", "ether").toString()
 		);
 	});
+  it("Should be withdraw 0.01 eth to the owner", async () => {
+		const { fundMe, owner, account2 } = await loadFixture(sameAccountDonatedTwiceFixture);
+    const prevBalance = await ethers.provider.getBalance(owner)
+    const withdrawValue = ethers.parseUnits("0.01","ether")
+    await fundMe.withdraw(withdrawValue)
+    const currBalance = await ethers.provider.getBalance(owner)
+
+    expect((prevBalance+withdrawValue) ===currBalance,"Balances were different")
+	});
 });
