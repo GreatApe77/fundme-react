@@ -32,7 +32,7 @@ export default function FundMeForm() {
       console.log(err)
     })
     
-  },[transactionHash])
+  },[transactionHash,account])
   function handleSubmit(e:React.MouseEvent<HTMLFormElement>){
     e.preventDefault()
     setLoading(true)
