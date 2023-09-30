@@ -4,12 +4,14 @@ import { useAddress } from "@thirdweb-dev/react"
 import { getTotalBalance } from "../web3-services/getTotalBalance"
 
 import  Spinner from "react-bootstrap/Spinner"
-
+import TransactionSuccess from "./TransactionSuccess"
 
 export default function FundMeForm() {
   const account = useAddress()
   const [donateValue,setDonateValue] = useState("0.01")
+  const [loading,setLoading] = useState(false)
   const [totalBalance,setTotalBalance] = useState<string>()
+  const [transactionHash,setTransactionHash] = useState<string>()
   useEffect(()=>{
     getTotalBalance(account!)
     .then((balance)=>{
@@ -18,15 +20,17 @@ export default function FundMeForm() {
     }).catch((err)=>{
       console.error(err)
     })
-  },[])
+  },[transactionHash])
   function handleSubmit(e:React.MouseEvent<HTMLFormElement>){
     e.preventDefault()
-    
+    setLoading(true)
     fund(donateValue,account!)
     .then((transaction)=>{
-      alert(transaction.transactionHash)
+      setTransactionHash(transaction.transactionHash)
     }).catch((err)=>{
       console.error(err)
+    }).finally(()=>{
+      setLoading(false)
     })
   }
   function handleInputChange(e:React.ChangeEvent<HTMLInputElement>){
@@ -49,9 +53,17 @@ export default function FundMeForm() {
             <label htmlFor="floatingPassword">Valor (ETH)</label>
           </div>
          
-          <button  className="w-100 btn btn-lg btn-primary" type="submit">Doar</button>
+          <button  className="w-100 btn btn-lg btn-primary" type="submit">
+            {loading?(<Spinner/>):("Doar")}
+          </button>
           <hr className="my-4" />
+          {transactionHash?(
+            <TransactionSuccess transactionHash={transactionHash}/>
+          ):(
+
           <small className="text-muted">Quando a doação for concluida o recibo aparecerá aqui.</small>
+          )}
+          
         </form>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { ConnectWallet } from "@thirdweb-dev/react";
 export default function Header() {
 	return (
 		<header >
-			<div className="px-3 py-2 bg-dark text-white">
+			<div className="px-3 py-2 bg-dark text-white shadow p-3 mb-5 bg-white rounded">
 				<div className="container">
 					<div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 						<a
@@ -16,10 +16,10 @@ export default function Header() {
 								
 								role="img"
 								aria-label="Bootstrap"
-								src="https://www.svgrepo.com/show/138401/wallet.svg"
+								src="https://www.svgrepo.com/show/466888/wallet-4.svg"
 							/>
 
-							<h3>Fund Me!</h3>	
+							<h3 className="text-black">Fund Me!</h3>	
 							
 						</a>
 
