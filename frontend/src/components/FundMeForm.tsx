@@ -5,9 +5,14 @@ import { getTotalBalance } from "../web3-services/getTotalBalance"
 
 import  Spinner from "react-bootstrap/Spinner"
 import TransactionSuccess from "./TransactionSuccess"
+import Button from "react-bootstrap/Button"
+import FundersModal from "./FundersModal"
+import {  Funders, getAllFunders } from "../web3-services/getFunders"
 
 export default function FundMeForm() {
   const account = useAddress()
+  const [modalShow, setModalShow] = useState(false);
+  const [funders,setFunders] = useState<Funders>([])
   const [donateValue,setDonateValue] = useState("0.01")
   const [loading,setLoading] = useState(false)
   const [totalBalance,setTotalBalance] = useState<string>()
@@ -20,6 +25,13 @@ export default function FundMeForm() {
     }).catch((err)=>{
       console.error(err)
     })
+    getAllFunders(account!)
+    .then((funders)=>{
+      setFunders(funders )
+    }).catch((err)=>{
+      console.log(err)
+    })
+    
   },[transactionHash])
   function handleSubmit(e:React.MouseEvent<HTMLFormElement>){
     e.preventDefault()
@@ -44,6 +56,14 @@ export default function FundMeForm() {
         <h1 className="display-4 fw-bold lh-1 mb-3">Obrigado pela atenção! Falta pouco para você contribuir!</h1>
         <h4 className="display-3 fw-bold lh-1 mb-3 text-success">Total: {totalBalance?(totalBalance):(<Spinner animation="grow"/>)} ETH <img className="img-fluid" width={"30"} src="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=026" alt=" ether logo" /></h4>
         <p className="col-lg-10 fs-4">Preencha o Formulário com o valor que deseja doar. E você terá ajudado bastante!</p>
+        
+          <p className="col-lg-10 fs-4">
+          <Button variant="primary" onClick={() => setModalShow(true)}>
+              Ver contribuidores
+          </Button>
+          </p>
+        
+        
       </div>
       <div className="col-md-10 mx-auto col-lg-5">
         <form onSubmit={handleSubmit} className="p-4 p-md-5 border rounded-3 bg-light">
@@ -53,7 +73,7 @@ export default function FundMeForm() {
             <label htmlFor="floatingPassword">Valor (ETH)</label>
           </div>
          
-          <button  className="w-100 btn btn-lg btn-primary" type="submit">
+          <button  className="w-100 btn btn-lg btn-primary" type="submit" disabled={loading}>
             {loading?(<Spinner/>):("Doar")}
           </button>
           <hr className="my-4" />
@@ -67,6 +87,10 @@ export default function FundMeForm() {
         </form>
       </div>
     </div>
+    <FundersModal funders={funders}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
   </div>
   )
 }
