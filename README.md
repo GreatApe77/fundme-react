@@ -1,13 +1,10 @@
-# Sample Hardhat Project
+# Fund Me React
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+Projeto Simples de Dapp utilizando hardhat com typescript e react com typescript no front end
 
-Try running some of the following tasks:
+Para executar a bateria de testes do smart contract:
 
 ```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.ts
+npm install
+npm run coverage
 ```
