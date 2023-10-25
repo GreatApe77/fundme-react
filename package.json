@@ -12,7 +12,9 @@
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "deployment-history": "^1.0.6",
     "dotenv": "^16.3.1",
-    "hardhat": "^2.17.4"
+    "hardhat": "^2.17.4",
+    "solidity-docgen": "^0.6.0-beta.36"
   }
 }
